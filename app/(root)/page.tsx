@@ -29,11 +29,11 @@ export default async function Home({searchParams}:{
     </p>
     <SearchForm  query={query}/>
      </section>
-    <section className="section-container" >
+    <section className=" section_container" >
       <p className="text-30-semibold">
         {query ? `Search results for ${query}`:'All Startup'}
       </p>
-      <ul className="mt-7 card-grid">
+      <ul className=" mt-7 card_grid">
         {posts?.length>0?(
           posts.map((post: StartupCardType)=>(
             <StartupCard  

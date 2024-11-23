@@ -3,8 +3,9 @@ import { formatDate } from "@/lib/utils"
 import { EyeIcon } from "lucide-react"
 import Link from "next/link";
 import Image from "next/image";
+import { Button } from "./ui/button";
 const StartupCard = ({post}:{post: StartupTypeCard}) => {
-    const {_createdAt,views,author:{_id:author_id,name},title,_id,image, description }=post;
+    const {_createdAt,views,author:{_id:author_id,name},title,_id,image, description,category }=post;
   return (
     <li className="startup-card group">
          <div className="flex-between">
@@ -16,8 +17,8 @@ const StartupCard = ({post}:{post: StartupTypeCard}) => {
                 <span className="text-16-medium">{views}</span>
             </div>
          </div>
-         <div>
-            <div>
+         <div className="flex-between mt-5 gap-5">
+            <div className="flex-1">
                 <Link href={`/users/${author_id}`}>
                 <p className="text-16-medium line-clamp-1">{name}</p>
                 </Link>
@@ -26,16 +27,27 @@ const StartupCard = ({post}:{post: StartupTypeCard}) => {
                 </Link>
             </div>
             <Link href={`/users/${author_id}`}>
-            <Image src="http://placehold.co/600x400" alt="placeholder"width={48}height={48} className="rounded">
-            </Image>
+            <Image src="http://placehold.co/600x400" alt="placeholder"width={48}height={48} className="rounded-full" />
+            
             </Link>
          </div>
-         <div>
+         
             <Link href={`/startup/${_id}`}>
                 <p className="startup-card_desc">{description}</p>
                 <img src={image} alt="placeholder" className="startup-card_img"/>
             </Link>
-         </div>
+        <div className="flex-between mt-5 gap-3">
+            <Link href={`/query=${category.toLowerCase()}`}>
+                <p className="text-16-medium">{category}</p>
+            </Link>
+            <Button className="startup-card_btn" asChild>
+            <Link href={`/startup/${_id}`}>
+                Details
+            </Link>
+            </Button>
+
+        </div>
+         
 
     </li>
   )
